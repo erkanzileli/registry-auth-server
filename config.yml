@@ -1,0 +1,22 @@
+version: 0.1
+server:
+  addr: ":5000"
+  certificate: "/ssl/server.pem"
+  key: "/ssl/server.key"
+auth:
+  token:
+    realm: http://localhost:8000/auth
+    service: "Docker registry"
+    issuer: "Auth Service"
+    rootcertbundle: /ssl/server.pem
+token:
+  issuer: "Auth Service"
+http:
+  addr: 0.0.0.0:5000
+  net: tcp
+loglevel: debug
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry
+  delete:
+    enabled: true
