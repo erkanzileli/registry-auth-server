@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"registry-auth-server/cmd"
 	"strings"
 	"time"
 
@@ -41,8 +40,8 @@ type access struct {
 	Actions []string `json:"actions"`
 }
 
-func readKeysFromCert() (libtrust.PublicKey, libtrust.PrivateKey) {
-	cert, err := tls.LoadX509KeyPair(cmd.RegistrySSLCertPath, cmd.RegistrySSLKeyPath)
+func readKeysFromCert(certFile, keyFile string) (libtrust.PublicKey, libtrust.PrivateKey) {
+	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,9 +69,9 @@ func resolveSignAlgFromPrivateKey(privateKey libtrust.PrivateKey) (sigAlg string
 }
 
 // CreateToken func
-func CreateToken(u *User) string {
+func CreateToken(u *User, cert, key string) string {
 	// Resolve keys from certificates
-	publicKey, privateKey := readKeysFromCert()
+	publicKey, privateKey := readKeysFromCert(cert, key)
 	sigAlg := resolveSignAlgFromPrivateKey(privateKey)
 
 	// Header
@@ -94,9 +93,9 @@ func CreateToken(u *User) string {
 
 	// Token payload
 	payload := payload{
-		Issuer:     "Auth Service",
+		Issuer:     "auth.registry.ezileli.dev",
 		Subject:    u.Username,
-		Audience:   "Docker registry",
+		Audience:   "registry.ezileli.dev",
 		Expiration: now.Unix() + tokenExpiresIn,
 		NotBefore:  now.Unix() - 5,
 		IssuedAt:   now.Unix(),

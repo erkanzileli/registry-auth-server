@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "123qweasd",
+      "access": [
+        {
+          "type": "registry",
+          "name": "catalog",
+          "actions": ["*"]
+        },
+        {
+          "type": "repository",
+          "name": "hello-world",
+          "actions": ["pull", "push"]
+        }
+      ]
+    }
+  ]
+}

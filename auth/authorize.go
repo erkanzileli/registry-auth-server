@@ -3,11 +3,10 @@ package auth
 var accesses = map[string][]access{
 	"admin": []access{
 		access{
-			Type: "repository",
-			Name: "hello-world",
+			Type: "registry",
+			Name: "catalog",
 			Actions: []string{
-				"pull",
-				"push",
+				"*",
 			},
 		},
 	},

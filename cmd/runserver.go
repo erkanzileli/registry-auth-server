@@ -1,12 +1,12 @@
 package cmd
 
 import (
+	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"path/filepath"
+	"registry-auth-server/config"
 	"registry-auth-server/server"
-
-	"github.com/spf13/cobra"
 )
 
 // Command definition
@@ -18,15 +18,16 @@ var runServerCmd = &cobra.Command{
 
 // Flags
 var (
-	UserAPI             bool
-	RegistrySSLKeyPath  string
-	RegistrySSLCertPath string
+	UserAPI bool
+	// RegistrySSLKeyPath  string
+	// RegistrySSLCertPath string
 )
 
 // RunServerCommand func
 func RunServerCommand(cmd *cobra.Command, args []string) {
-	checkFile(RegistrySSLCertPath)
-	checkFile(RegistrySSLKeyPath)
+	checkFile(config.Global.RegistryCertPath)
+	checkFile(config.Global.RegistryKeyPath)
+
 	server.RunServer()
 }
 

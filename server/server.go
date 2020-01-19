@@ -1,44 +1,32 @@
 package server
 
 import (
-	"registry-auth-server/auth"
-
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"log"
+	"registry-auth-server/config"
 )
+
+type Route struct {
+	Endpoint string
+	Method   string
+	Handler  func(c *gin.Context)
+}
+
+var router *gin.Engine
+
+func registerRoutes() {
+	registerAuthRoutes(router)
+}
 
 // RunServer creates a gin instance and starts to listen http calls
 func RunServer() {
+	router = gin.Default()
 
-	r := gin.Default()
-	r.GET("/auth", func(c *gin.Context) {
-		service := c.Query("service")
+	registerRoutes()
 
-		if service != service {
-			c.JSON(401, gin.H{})
-			return
-		}
-
-		account := c.Query("account")
-		authHeader, ok := c.Request.Header["Authorization"]
-		// Login, authenticate
-		if len(account) > 0 && ok {
-			u, err := auth.ParseHeader(authHeader[0])
-			if err != nil {
-				c.JSON(400, "Auth header can not parsed!")
-				return
-			}
-			if u.Authenticate() {
-				response := map[string]string{
-					"token": auth.CreateToken(u),
-				}
-				c.JSON(200, response)
-				return
-			}
-		}
-
-		c.JSON(401, gin.H{})
-	})
-
-	r.Run(":8000")
-
+	err := router.Run(fmt.Sprintf("%s:%s", config.Global.Host, config.Global.Port))
+	if err != nil {
+		log.Fatal(err)
+	}
 }

@@ -25,10 +25,10 @@ func init() {
 	rootCmd.AddCommand(runServerCmd)
 
 	// Add flag to startCmd
-	runServerCmd.Flags().StringVarP(&RegistrySSLKeyPath, "registry-key", "", "", "Registry SSL key path")
-	runServerCmd.Flags().StringVarP(&RegistrySSLCertPath, "registry-crt", "", "", "Registry SSL certificate path")
+	// runServerCmd.Flags().StringVarP(&RegistrySSLKeyPath, "registry-key", "", "", "Registry SSL key path")
+	// runServerCmd.Flags().StringVarP(&RegistrySSLCertPath, "registry-crt", "", "", "Registry SSL certificate path")
 
 	// Required Flags
-	runServerCmd.MarkFlagRequired("registry-key")
-	runServerCmd.MarkFlagRequired("registry-crt")
+	// runServerCmd.MarkFlagRequired("registry-key")
+	// runServerCmd.MarkFlagRequired("registry-crt")
 }

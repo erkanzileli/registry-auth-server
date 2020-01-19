@@ -20,10 +20,22 @@ Also I have an example Registry configuration file. In the root directory of reg
 
 You can run a registry instance like this. I give my all network interfaces to this container. This is easyway. If your 5000 port is unavailable then you should change 5000 port to another port which you want in config.yml file.
 
+For Linux
+
     docker run \
-    -ti \
-    --rm \
+    --detach \
+    --name=registry \
     --network=host \
+    -v `pwd`/ssl:/ssl \
+    -v `pwd`/config.yml:/etc/docker/registry/config.yml \
+    registry:2
+
+For Mac
+
+    docker run \
+    --detach \
+    --name=registry \
+    --publish 5000:5000 \
     -v `pwd`/ssl:/ssl \
     -v `pwd`/config.yml:/etc/docker/registry/config.yml \
     registry:2

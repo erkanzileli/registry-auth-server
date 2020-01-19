@@ -5,12 +5,10 @@ server:
   key: "/ssl/server.key"
 auth:
   token:
-    realm: http://localhost:8000/auth
-    service: "Docker registry"
-    issuer: "Auth Service"
+    realm: http://host.docker.internal:8000/auth
+    service: "registry.ezileli.dev"
+    issuer: "auth.registry.ezileli.dev"
     rootcertbundle: /ssl/server.pem
-token:
-  issuer: "Auth Service"
 http:
   addr: 0.0.0.0:5000
   net: tcp
