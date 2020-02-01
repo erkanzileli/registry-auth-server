@@ -1,8 +1,8 @@
 package server
 
 import (
-	"registry-auth-server/auth"
-	"registry-auth-server/config"
+	"registry-auth/auth"
+	"registry-auth/config"
 
 	"github.com/gin-gonic/gin"
 )

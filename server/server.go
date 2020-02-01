@@ -2,9 +2,10 @@ package server
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"log"
-	"registry-auth-server/config"
+	"registry-auth/config"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Route struct {

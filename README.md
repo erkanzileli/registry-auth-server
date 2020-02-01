@@ -1,4 +1,4 @@
-# registry-auth-server
+# registry-auth
 
 This is a PoC of [Registry Token Auth Spec](https://docs.docker.com/registry/spec/auth/token/) document. This app now works on hard-coded user and permission list.
 
@@ -16,7 +16,7 @@ Registry application needs certificates when you want to use this with Token Aut
 
 But I already created and put it these to `ssl` directory.
 
-Also I have an example Registry configuration file. In the root directory of registry-auth-server config.yml
+Also I have an example Registry configuration file. In the root directory of registry-auth config.yml
 
 You can run a registry instance like this. I give my all network interfaces to this container. This is easyway. If your 5000 port is unavailable then you should change 5000 port to another port which you want in config.yml file.
 

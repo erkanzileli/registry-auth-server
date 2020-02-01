@@ -1,9 +1,9 @@
 package main
 
 import (
-	"registry-auth-server/cmd"
-	"registry-auth-server/config"
-	"registry-auth-server/db"
+	"registry-auth/cmd"
+	"registry-auth/config"
+	"registry-auth/db"
 )
 
 func main() {

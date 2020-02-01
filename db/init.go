@@ -1,9 +1,10 @@
 package db
 
 import (
+	"registry-auth/db/model"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"registry-auth-server/db/model"
 )
 
 var db *gorm.DB

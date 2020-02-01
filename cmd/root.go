@@ -8,7 +8,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:     "registry-auth-server",
+	Use:     "registry-auth",
 	Short:   "Authentication & Authorization server for Private Docker Registries.",
 	Version: "1.0.0",
 }

@@ -1,12 +1,13 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"path/filepath"
-	"registry-auth-server/config"
-	"registry-auth-server/server"
+	"registry-auth/config"
+	"registry-auth/server"
+
+	"github.com/spf13/cobra"
 )
 
 // Command definition

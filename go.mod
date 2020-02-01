@@ -1,4 +1,4 @@
-module registry-auth-server
+module registry-auth
 
 go 1.13
 
