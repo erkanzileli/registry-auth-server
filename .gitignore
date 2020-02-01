@@ -1,2 +1,3 @@
 .idea
 registry-auth-server
+*.db
