@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func registerAuthRoutes(r *gin.Engine) {
-	r.GET("/auth", func(c *gin.Context) {
+func registerAuthRoutes() {
+	router.GET("/auth", func(c *gin.Context) {
 		service := c.Query("service")
 
 		if service != config.Global.TokenService {

@@ -9,10 +9,10 @@
       "program": "${workspaceFolder}/main.go",
       "args": ["runserver"],
       "env": {
-        "AUTH_REGISTRY_CERT_PATH": "ssl/server.pem",
-        "AUTH_REGISTRY_KEY_PATH": "ssl/server.key",
-        "AUTH_REGISTRY_TOKEN_ISSUER": "auth.registry.ezileli.dev",
-        "AUTH_REGISTRY_TOKEN_SERVICE": "registry.ezileli.dev",
+        "REGISTRY_AUTH_CERT_PATH": "ssl/server.pem",
+        "REGISTRY_AUTH_KEY_PATH": "ssl/server.key",
+        "REGISTRY_AUTH_TOKEN_ISSUER": "auth.registry.ezileli.dev",
+        "REGISTRY_AUTH_TOKEN_SERVICE": "registry.ezileli.dev",
         "AUTH_HOST": "0.0.0.0",
         "AUTH_PORT": "8000"
       }

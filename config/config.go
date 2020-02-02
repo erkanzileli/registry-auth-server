@@ -19,7 +19,7 @@ type config struct {
 	TokenService string
 }
 
-var envPrefix = "AUTH_"
+var envPrefix = "REGISTRY_AUTH_"
 
 var Global = &config{}
 
@@ -30,12 +30,20 @@ func Init() {
 
 func readFromEnv() {
 	// todo: env parser
-	Global.RegistryCertPath = os.Getenv(envPrefix + "REGISTRY_CERT_PATH")
-	Global.RegistryKeyPath = os.Getenv(envPrefix + "REGISTRY_KEY_PATH")
-	Global.TokenIssuer = os.Getenv(envPrefix + "REGISTRY_TOKEN_ISSUER")
-	Global.TokenService = os.Getenv(envPrefix + "REGISTRY_TOKEN_SERVICE")
-	Global.Host = os.Getenv(envPrefix + "HOST")
-	Global.Port = os.Getenv(envPrefix + "PORT")
+	Global.RegistryCertPath = os.Getenv(envPrefix + "CERT_PATH")
+	Global.RegistryKeyPath = os.Getenv(envPrefix + "KEY_PATH")
+	Global.TokenIssuer = os.Getenv(envPrefix + "TOKEN_ISSUER")
+	Global.TokenService = os.Getenv(envPrefix + "TOKEN_SERVICE")
+
+	host := os.Getenv(envPrefix + "HOST")
+	if len(host) > 0 {
+		Global.Host = host
+	}
+
+	port := os.Getenv(envPrefix + "PORT")
+	if len(port) > 0 {
+		Global.Port = port
+	}
 }
 
 func setDefaults() {

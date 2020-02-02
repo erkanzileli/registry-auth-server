@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"registry-auth/config"
 	"strings"
 	"time"
 
@@ -93,9 +94,9 @@ func CreateToken(u *User, cert, key string) string {
 
 	// Token payload
 	payload := payload{
-		Issuer:     "auth.registry.ezileli.dev",
+		Issuer:     config.Global.TokenIssuer,
 		Subject:    u.Username,
-		Audience:   "registry.ezileli.dev",
+		Audience:   config.Global.TokenService,
 		Expiration: now.Unix() + tokenExpiresIn,
 		NotBefore:  now.Unix() - 5,
 		IssuedAt:   now.Unix(),

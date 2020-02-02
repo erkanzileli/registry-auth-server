@@ -17,7 +17,8 @@ type Route struct {
 var router *gin.Engine
 
 func registerRoutes() {
-	registerAuthRoutes(router)
+	registerAuthRoutes()
+	registerRepositoryRoutes()
 }
 
 // RunServer creates a gin instance and starts to listen http calls

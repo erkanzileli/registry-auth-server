@@ -8,6 +8,6 @@ import (
 
 func main() {
 	config.Init()
-	db.Init()
+	go db.Init()
 	cmd.Execute()
 }
