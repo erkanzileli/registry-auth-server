@@ -26,8 +26,10 @@ func registerAuthRoutes() {
 				return
 			}
 			if u.Authenticate() {
+				// Authorize user
+				accesses := u.Authorize()
 				response := map[string]string{
-					"token": auth.CreateToken(u, config.Global.RegistryCertPath, config.Global.RegistryKeyPath),
+					"token": auth.CreateToken(u.Username, config.Global.RegistryCertPath, config.Global.RegistryKeyPath, accesses),
 				}
 				c.JSON(200, response)
 				return

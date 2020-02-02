@@ -23,8 +23,17 @@ func read(c *gin.Context) {
 }
 
 func getRepositories() map[string]interface{} {
-	u := &auth.User{Username: "admin", Password: "123qweasd"}
-	token := auth.CreateToken(u, config.Global.RegistryCertPath, config.Global.RegistryKeyPath)
+	username := "admin"
+	accesses := []auth.Access{
+		auth.Access{
+			Type: "registry",
+			Name: "catalog",
+			Actions: []string{
+				"*",
+			},
+		},
+	}
+	token := auth.CreateToken(username, config.Global.RegistryCertPath, config.Global.RegistryKeyPath, accesses)
 
 	client := &http.Client{}
 

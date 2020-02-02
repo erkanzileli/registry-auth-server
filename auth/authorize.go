@@ -1,8 +1,8 @@
 package auth
 
-var accesses = map[string][]access{
-	"admin": []access{
-		access{
+var accesses = map[string][]Access{
+	"admin": []Access{
+		Access{
 			Type: "registry",
 			Name: "catalog",
 			Actions: []string{
@@ -10,8 +10,8 @@ var accesses = map[string][]access{
 			},
 		},
 	},
-	"user": []access{
-		access{
+	"user": []Access{
+		Access{
 			Type: "repository",
 			Name: "hello-world",
 			Actions: []string{
@@ -22,6 +22,6 @@ var accesses = map[string][]access{
 }
 
 // Authorize func
-func (u *User) Authorize() []access {
+func (u *User) Authorize() []Access {
 	return accesses[u.Username]
 }

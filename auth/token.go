@@ -16,13 +16,13 @@ import (
 
 var tokenExpiresIn = int64(90)
 
-type header struct {
+type Header struct {
 	Type      string `json:"typ"`
 	Algorithm string `json:"alg"`
 	KeyID     string `json:"kid"`
 }
 
-type payload struct {
+type Payload struct {
 	Issuer     string `json:"iss"`
 	Subject    string `json:"sub"`
 	Audience   string `json:"aud"`
@@ -32,10 +32,10 @@ type payload struct {
 	JwtID      string `json:"jti"`
 
 	// Private fields
-	Access []access `json:"access"`
+	Access []Access `json:"access"`
 }
 
-type access struct {
+type Access struct {
 	Type    string   `json:"type"`
 	Name    string   `json:"name"`
 	Actions []string `json:"actions"`
@@ -70,13 +70,13 @@ func resolveSignAlgFromPrivateKey(privateKey libtrust.PrivateKey) (sigAlg string
 }
 
 // CreateToken func
-func CreateToken(u *User, cert, key string) string {
+func CreateToken(username, cert, key string, accesses []Access) string {
 	// Resolve keys from certificates
 	publicKey, privateKey := readKeysFromCert(cert, key)
 	sigAlg := resolveSignAlgFromPrivateKey(privateKey)
 
 	// Header
-	h := header{
+	h := Header{
 		Type:      "JWT",
 		Algorithm: sigAlg,
 		KeyID:     publicKey.KeyID(),
@@ -89,13 +89,10 @@ func CreateToken(u *User, cert, key string) string {
 	// Get current time as seconds
 	var now = time.Now()
 
-	// Authorize user
-	accesses := u.Authorize()
-
 	// Token payload
-	payload := payload{
+	payload := Payload{
 		Issuer:     config.Global.TokenIssuer,
-		Subject:    u.Username,
+		Subject:    username,
 		Audience:   config.Global.TokenService,
 		Expiration: now.Unix() + tokenExpiresIn,
 		NotBefore:  now.Unix() - 5,
