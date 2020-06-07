@@ -13,9 +13,9 @@ var accesses = map[string][]Access{
 	"user": []Access{
 		Access{
 			Type: "repository",
-			Name: "hello-world",
+			Name: "*",
 			Actions: []string{
-				"pull",
+				"*",
 			},
 		},
 	},

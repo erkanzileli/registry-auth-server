@@ -8,26 +8,24 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Route struct {
-	Endpoint string
-	Method   string
-	Handler  func(c *gin.Context)
-}
-
-var router *gin.Engine
+// Router variable represents entire HTTP router
+var Router *gin.Engine
 
 func registerRoutes() {
+	// registerAccessTypeRoutes()
+	// registerAccessRoutes()
 	registerAuthRoutes()
 	registerRepositoryRoutes()
+	// registerTagRoutes()
 }
 
 // RunServer creates a gin instance and starts to listen http calls
 func RunServer() {
-	router = gin.Default()
+	Router = gin.Default()
 
 	registerRoutes()
 
-	err := router.Run(fmt.Sprintf("%s:%s", config.Global.Host, config.Global.Port))
+	err := Router.Run(fmt.Sprintf("%s:%s", config.Global.Host, config.Global.Port))
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -1,4 +1,4 @@
-package db
+package common
 
 import (
 	"registry-auth/db/model"
@@ -7,13 +7,13 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
-// Conn variable is singleton database connection
-var Conn *gorm.DB
+// DB variable is singleton database connection
+var DB *gorm.DB
 
 // Init function makes a database connection and migrates the models
 func Init() {
 	_db, err := gorm.Open("sqlite3", "test.db")
-	Conn = _db
+	DB = _db
 
 	if err != nil {
 		panic("failed to connect database")
@@ -26,10 +26,10 @@ func Init() {
 }
 
 func migrate() {
-	Conn.AutoMigrate(&model.User{})
-	Conn.AutoMigrate(&model.Repository{})
-	Conn.AutoMigrate(&model.Tag{})
-	Conn.AutoMigrate(&model.Access{})
-	Conn.AutoMigrate(&model.AccessType{})
-	Conn.AutoMigrate(&model.Action{})
+	DB.AutoMigrate(&model.User{})
+	DB.AutoMigrate(&model.Repository{})
+	DB.AutoMigrate(&model.Tag{})
+	DB.AutoMigrate(&model.Access{})
+	DB.AutoMigrate(&model.AccessType{})
+	DB.AutoMigrate(&model.Action{})
 }

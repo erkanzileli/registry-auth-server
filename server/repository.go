@@ -12,7 +12,7 @@ import (
 )
 
 func registerRepositoryRoutes() {
-	g := router.Group("repository")
+	g := Router.Group("repository")
 	g.GET("read", read)
 }
 

@@ -8,7 +8,7 @@ import (
 )
 
 func registerAuthRoutes() {
-	router.GET("/auth", func(c *gin.Context) {
+	Router.GET("/auth", func(c *gin.Context) {
 		service := c.Query("service")
 
 		if service != config.Global.TokenService {
